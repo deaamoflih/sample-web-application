@@ -1,32 +1,20 @@
-pipeline{
-
-      agent none
-        
-        stages{
-
-              stage('Quality Gate Status Check'){
-		      agent {
-                docker {
-                image 'maven'
-                args '-v $HOME/.m2:/root/.m2'
+node {
+  
+  
+  stage('SCM') {
+    checkout([$class: 'GitSCM', branches: [[name: '*/master']], doGenerateSubmoduleConfigurations: false, extensions: [], submoduleCfg: [], userRemoteConfigs: [[credentialsId: '2678cf77-021c-4c49-a946-a53e8ac24424', url: 'https://github.com/deaamoflih/demo-temp']]])
                 }
-                  steps{
-                      script{
-			      withSonarQubeEnv('sonarserver') { 
-			      sh "mvn sonar:sonar"
-                       	     	}
-			      timeout(time: 1, unit: 'HOURS') {
-			      def qg = waitForQualityGate()
-				      if (qg.status != 'OK') {
-					   error "Pipeline aborted due to quality gate failure: ${qg.status}"
-				      }
-                    		}
-		    	    sh "mvn clean install"
-		  
-                 	}
-               	 }  
-              }	
-		
-            }	       	     	         
-}
-}
+  stage('Build and Anlyzing') {
+      withMaven {
+        withSonarQubeEnv('sonarqube') {
+        def mvnHome = tool name: 'mvn', type: 'maven' 
+         def scannerHome = tool 'sonarqube';
+        sh "${mvnHome}/bin/mvn package"
+        sh "${mvnHome}/bin/mvn sonar:sonar "
+  
+                }
+                }
+  }
+
+    
+  }
