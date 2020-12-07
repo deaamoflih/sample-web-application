@@ -1,0 +1,19 @@
+apiVersion: bitnami.com/v1alpha1
+kind: SealedSecret
+metadata:
+  creationTimestamp: null
+  name: ss-secret
+  namespace: default
+spec:
+  encryptedData:
+    ss.yaml: AgCo6Gg7dz7Rxf44HV+R4FeUPhyrNoWRCq8t5gjFlnP6qZ5bFh5mqIiYnBbZijzfFldVWC3a43bNVQHGdYd+XT3VpAbOCbD+2WqZP6vmwh9c8OkAlwqq16HH4GYx57p08PuJFIJLQjVjtboRbTPgeVSl/GXKZRv3otKIH4N4wDTtN3+W0mAlu7pcKp7+PkpllhtA/OaTJjUgG7XNKakkvZ1kQ9aEG3Zu00PNLsO+1RvqIA/jpF/H1+K13wS+L71YkfrQWMidvJzu1Kd9CVR3Y5i0PtRK3His97mF4nCgt9P3MWPR3IlsXtvz1vcsC/rxB7/5mBw9DO5t9jGE/KZzjdo242G50N9iAtMulev1wvA3pbD3DGx584JhAiG1mYWmBqIk9NFxqheIEEbgrK/tvr0VrO1+TDJ/p4ny4UfeRbbbGFeNG9DcmM6zqVNs45x8cyskukWrJXaAGa6qGaoXim/quU26aa63ltCWFXBiJbzv5UYZ6TxsHoJFpBYxVOpin9VnCmoEE57Byb8+UR+CtIIvuS4DF3iEh1MH+TR0NHZEL4/TXJBd9L2301XG642dwiOzDuG+oDD1ClA7Z6hj3XNQmk2sAgZujn65kQjJH5zM3xoVsVIBF6WmbOxaggCY+VDdSaz30cvaOZ0VP4LRuyc9UYNaYs5A2f9KbLSdE3+R1w3HJJAWux8Rl0UH8Ji4xe9bECwggDZgV4UM3CDTaadQ2mJiw2fZmljld8gfKBrp3XshWXu1vzJl/g==
+  template:
+    metadata:
+      annotations:
+        jenkins.io/credentials-description: Vpplication
+      creationTimestamp: null
+      labels:
+        jenkins.io/credentials-type: usernamePassword
+      name: ss-secret
+      namespace: default
+
